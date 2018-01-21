@@ -30,7 +30,4 @@ public abstract class Auditable<U> {
     @LastModifiedDate
     @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;
-
-    // Getters and Setters
-
 }
