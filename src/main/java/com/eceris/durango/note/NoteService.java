@@ -3,6 +3,8 @@ package com.eceris.durango.note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NoteService {
 
@@ -11,6 +13,10 @@ public class NoteService {
 
     public Note get(Long id) {
         return repository.findOne(id);
+    }
+
+    public List<Note> getBundle() {
+        return repository.findAll();
     }
 
     public Note create(Note note) {

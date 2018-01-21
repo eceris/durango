@@ -4,32 +4,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/note")
 public class NoteController {
 
     @Autowired
     private NoteService service;
 
-    @GetMapping("/note/{id}")
+    @GetMapping("{id}")
     @ResponseBody
     public ResponseEntity<Note> get(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok().body(service.get(id));
     }
 
-    @PostMapping("/note")
+    @GetMapping
+    @ResponseBody
+    public ResponseEntity<List<Note>> getBundle() {
+        return ResponseEntity.ok().body(service.getBundle());
+    }
+
+    @PostMapping
     @ResponseBody
     public ResponseEntity<Note> create(@RequestBody Note note) {
         return ResponseEntity.ok().body(service.create(note));
     }
 
-    @PutMapping("/note")
+    @PutMapping
     @ResponseBody
     public ResponseEntity<Note> update(@RequestBody Note note) {
         return ResponseEntity.ok().body(service.update(note));
     }
 
-    @DeleteMapping("/note")
+    @DeleteMapping
     @ResponseBody
     public ResponseEntity delete(@RequestBody Note note) {
         service.delete(note);
